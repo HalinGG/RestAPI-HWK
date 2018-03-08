@@ -3,20 +3,24 @@ Overview
 Take Home Assignment for Rest APIs
 
 Write the code for the problem below in the language of your choice:
+
 Count Words in a String
 
 Explain how you would deal with each of the following issues:
+
 -DNS is not working
 
 -Website is encountering timeout
 
 
 Create a GitHub repo for the following project:
+
 -Get a dataset of your choosing (i.e. Quandl, Open Movie Database, etc.)
 
 -Populate data into a database
 
 Build an API with following components:
+
 -Endpoints
 
 -Methods
@@ -46,7 +50,7 @@ These steps install cloned code, dependencies and virtual environment.
     $ git clone https://github.com/HalinGG/RestAPI-HWK.git
 
     $ cd RestAPI-HWK
-activate your pyenv or virtualenv and run:
+activate your pyenv or virtualenv and run::
     pip install -r requirements.txt
 
 
@@ -60,6 +64,7 @@ Start MongoDB by executing "mongod" file::
     mongod
 
 This should start mongoDB at: http://127.0.0.1:27017/
+
 Note: MongoDB Url can be changed in the configuration.ini
 
 Run "myflaskapp.py" to start the Flask Web Server at: http://127.0.0.1:5000/
