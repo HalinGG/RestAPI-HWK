@@ -25,14 +25,5 @@ def word_count():
     total = len(words.split())
     return "The total words in the string are: " + str(total)
 
-def authenticate():
-    """Sends a 401 response that enables basic auth"""
-    return jsonify(error='Authentication required'), 401, \
-        {'WWW-Authenticate': 'Basic realm="Login Required"'}
-
-# error
-#     raise klass(message, resp.status_code, resp.text, resp.headers, code)
-# quandl.errors.quandl_error.NotFoundError: (Status 404) (Quandl Error QECx02) You have submitted an incorrect Quandl code. Please check your Quandl codes and try again
-
 if __name__ == '__main__':
     app.run()

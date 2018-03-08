@@ -25,6 +25,13 @@ client = MongoClient('mongodb://127.0.0.1:27017/')
 db = client['zillowDB']
 rentCollection = db['median_rental']
 
+
+>>> a=urllib.urlopen('http://www.google.com/asdfsf')
+>>> a.getcode()
+404
+>>> a=urllib.urlopen('http://www.google.com/')
+>>> a.getcode()
+200
 # This uploads
 def upload(collection, url):
 if rentCollection.count() != 1:
