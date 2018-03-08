@@ -25,20 +25,20 @@ def word_count():
 
 @app.route("/getMedianSold")
 def soldPrice():
-    rent = rentCollection.find({})
-    output = str(list(rent))
+    data = soldCollection.find({})
+    output = str(list(data))
     return output
 
 @app.route("/getMedianRent")
 def rentPrice():
-    rent = soldCollection.find({})
-    output = str(list(rent))
+    data = rentCollection.find({})
+    output = str(list(data))
     return output
 
 @app.route("/getMedianSQFT")
 def SQFTPrice():
-    rent = SQFTCollection.find({})
-    output = str(list(rent))
+    data = SQFTCollection.find({})
+    output = str(list(data))
     return output
 
 if __name__ == '__main__':
