@@ -1,22 +1,20 @@
 from flask import Flask, request
 from pymongo import MongoClient
-import jsonify #add to requirements.txt or uninstall
-import pandas
+import quandlToMongo
+from pprint import pprint
 
-
-
-
-
-########## tutorial - end ##########
+quandlToMongo.populateMongo() #populates MongoDB tables
 
 app = Flask(__name__)
-#pytests
-#get real estate graph for city(x) for dates(x to y) LIKE (Trulia trend_
+#TODOpytests
 
-#get average for city(x) fro dates(x to y)
 
-#get percentile(P) average for city(x) from dates(x to y)?
+client = MongoClient('mongodb://127.0.0.1:27017/')
+db = client['zillowDB']
 
+rentCollection = db['median_rental']
+soldCollection = db['median_sold']
+SQFTCollection = db['median_SQFT']
 
 
 @app.route("/word_count")
@@ -24,6 +22,24 @@ def word_count():
     words = str(request.args.get('words'))
     total = len(words.split())
     return "The total words in the string are: " + str(total)
+
+@app.route("/getMedianSold")
+def soldPrice():
+    rent = rentCollection.find({})
+    output = str(list(rent))
+    return output
+
+@app.route("/getMedianRent")
+def rentPrice():
+    rent = soldCollection.find({})
+    output = str(list(rent))
+    return output
+
+@app.route("/getMedianSQFT")
+def SQFTPrice():
+    rent = SQFTCollection.find({})
+    output = str(list(rent))
+    return output
 
 if __name__ == '__main__':
     app.run()
