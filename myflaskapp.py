@@ -1,15 +1,18 @@
 from flask import Flask, request
 from pymongo import MongoClient
 import quandlToMongo
-from pprint import pprint
 
-quandlToMongo.populateMongo() #populates MongoDB tables
+import configparser
+config = configparser.ConfigParser()
+config.read('configuration.ini')
+
 
 app = Flask(__name__)
 #TODOpytests
 
+quandlToMongo.populateMongo() #populates MongoDB tables
 
-client = MongoClient('mongodb://127.0.0.1:27017/')
+client = MongoClient(config['DEFAULT']['mongoDBurl'])
 db = client['zillowDB']
 
 rentCollection = db['median_rental']

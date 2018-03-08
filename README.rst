@@ -76,3 +76,10 @@ if this is an issue with the client or server side.
 
 
 
+Notes
+------
+
+Flask will output HTTP Status codes to the python console:
+    127.0.0.1 - - [08/Mar/2018 00:25:57] "GET /getMedianRent HTTP/1.1" 200 -
+    127.0.0.1 - - [08/Mar/2018 00:34:02] "GET /getMedianASDF HTTP/1.1" 404 -
+

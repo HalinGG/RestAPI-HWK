@@ -3,10 +3,14 @@ from urllib.request import urlopen
 from pymongo import MongoClient
 from bson import json_util
 
+import configparser
+config = configparser.ConfigParser()
+config.read('configuration.ini')
+
 
 quandl.ApiConfig.api_key = 'wSJyei4z9c8ykqryY8i6'
 
-client = MongoClient('mongodb://127.0.0.1:27017/')
+client = MongoClient(config['DEFAULT']['mongoDBurl'])
 db = client['zillowDB']
 rentCollection = db['median_rental']
 soldCollection = db['median_sold']
