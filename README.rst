@@ -45,13 +45,14 @@ To install and run you need:
 Installation
 ------------
 
-These steps install cloned code, dependencies and virtual environment.
+These steps install cloned code, dependencies and virtual environment:
 
     $ git clone https://github.com/HalinGG/RestAPI-HWK.git
 
     $ cd RestAPI-HWK
+
 activate your pyenv or virtualenv and run::
-    pip install -r requirements.txt
+    $ pip install -r requirements.txt
 
 
 Steps to install MongoDB: https://docs.mongodb.com/manual/administration/install-community/
@@ -60,16 +61,17 @@ Steps to install MongoDB: https://docs.mongodb.com/manual/administration/install
 Running all Rest APIs
 =================
 
-Start MongoDB by executing "mongod" file::
-    mongod
+Start MongoDB by executing "mongod" file:
+    $ mongod
 
 This should start mongoDB at: http://127.0.0.1:27017/
+
 Note: MongoDB Url can be changed in the configuration.ini
 
 Run "myflaskapp.py" to start the Flask Web Server at: http://127.0.0.1:5000/
 
 
-How to Use WordAPI
+How to Use The WordAPI
 ------------------
 This is a Rest API that returns the total count of words from input.
 
@@ -78,16 +80,31 @@ Enter input into URL in the form::
     http://127.0.0.1:5000/word_count?words=my sentence to count
 
 
+
+How to Use The Zillow Real Estate Data API
+------------------------------------------
+This is a Rest API that provides endpoints (GET requests) for 3 different types of JSON data:
+
+-Median Sold Price For All Homes in San Jose, CA: http://127.0.0.1:5000/getMedianSold
+
+-Median Sold Price Per Square Foot For All Homes in San Jose, CA: http://127.0.0.1:5000/getMedianSQFT
+
+-Median Rental Price For All Homes in San Jose, CA: http://127.0.0.1:5000/getMedianRent
+
+
+
 Answers to your Questions
 -------------------------
 
 How would you deal with DNS not working?
+
 If DNS is not working, I would send user requests to the IP address of the server my
 application is hosted on instead of using DNS. Also, this fix could be automated in python
 and we could include automated DNS trouble shooting such as clearing DNS cache, ping ip, etc.
 
 
 How would you deal with the website encountering timeout?
+
 If many users are experiencing timeout issues, the server this application
 is hosted on should restart itself and team notified(error codes and logs).
 A timeout of 100 seconds could be set.
@@ -99,7 +116,16 @@ if this is an issue with the client or server side.
 Notes
 ------
 
-Flask will output HTTP Status codes to the python console::
+Flask will output HTTP Status codes to the python console:
     127.0.0.1 - - [08/Mar/2018 00:25:57] "GET /getMedianRent HTTP/1.1" 200 -
+
     127.0.0.1 - - [08/Mar/2018 00:34:02] "GET /getMedianASDF HTTP/1.1" 404 -
 
+
+Zillow Real Estate Data is from:
+
+https://www.quandl.com/data/ZILLOW-Zillow-Real-Estate-Research/documentation/data-organization
+
+Example use of quandl API:
+
+https://www.quandl.com/api/v3/datasets/ZILLOW/C8_MRPAH.json?api_key=yourAPIkeyGoesHere
