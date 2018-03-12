@@ -1,19 +1,7 @@
-#
-#
-# import configparser
-# config = configparser.ConfigParser()
-# config.read('configuration.ini')
-# import sys, os
-# myPath = os.path.dirname(os.path.abspath(__file__))
-# sys.path.insert(0, myPath + '/../')
+import myflaskapp.myflaskapp
 
-import myflaskapp
-#
-# # Bring your packages onto the path
+def test_zero_words():
+    assert myflaskapp.myflaskapp.getCount("") == "0"
 
-# # Now do your import
-#from myflaskapp import word_count
-
-def test_word_count():
-    assert myflaskapp.word_count()("One Two Three") == 3
-
+def test_three_words():
+    assert myflaskapp.myflaskapp.getCount("One two three") == "3"

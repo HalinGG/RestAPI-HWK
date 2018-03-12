@@ -5,25 +5,22 @@
 
 from flask import Flask, request
 from pymongo import MongoClient
-import quandlToMongo
+from importlib.machinery import SourceFileLoader
+quandlToMongo = SourceFileLoader("quandToMongo", "/Users/halgarci/PycharmProjects/WordApi/myflaskapp/quandlToMongo.py").load_module()
 
-import configparser
-config = configparser.ConfigParser()
-config.read('configuration.ini')
+#import myflaskapp.quandlToMongo
 
+quandlToMongo.populateMongo()  # populates MongoDB tables
 
-app = Flask(__name__)
-#TODOpytests
-
-quandlToMongo.populateMongo() #populates MongoDB tables
-
-client = MongoClient(config['DEFAULT']['mongoDBurl'])
+#MongoDB setup
+client = MongoClient('mongodb://127.0.0.1:27017/')
 db = client['zillowDB']
 
 rentCollection = db['median_rental']
 soldCollection = db['median_sold']
 SQFTCollection = db['median_SQFT']
 
+app = Flask(__name__)
 
 @app.route("/word_count")
 def word_count():
@@ -31,36 +28,42 @@ def word_count():
         and returns the total count of the words in that sentence.
     '''
     words = str(request.args.get('words'))
-    total = len(words.split())
-    return "The total words in the string are: " + str(total)
+    return "The total words in the string are: " + getCount(words)
 
 @app.route("/getMedianSold")
 def soldPrice():
     ''' This method provides a Flask API endpoint that GETS/returns
-        Zillow Median Sold Price for All Homes in San Jose, CA
+        Zillow Median Sold Price each year for All Homes in San Jose, CA
         Returned data is in JSON format.
     '''
-    data = soldCollection.find({})
-    output = str(list(data))
-    return output
+    return getZillow(soldCollection)
 
 @app.route("/getMedianRent")
 def rentPrice():
     ''' This method provides a Flask API endpoint that GETS/returns
-        Zillow Median Rental Price For All Homes in San Jose, CA
+        Zillow Median Rental Price each year For All Homes in San Jose, CA
         Returned data is in JSON format.
     '''
-    data = rentCollection.find({})
-    output = str(list(data))
-    return output
+    return getZillow(rentCollection)
 
 @app.route("/getMedianSQFT")
 def SQFTPrice():
     ''' This method provides a Flask API endpoint that GETS/returns
-        Zillow Median Sold Price Per Square Foot For All Homes in San Jose, CA
+        Zillow Median Sold Price Per Square Foot each year For All Homes in San Jose, CA
         Returned data is in JSON format.
     '''
-    data = SQFTCollection.find({})
+    return getZillow(SQFTCollection)
+
+
+def getCount(words):
+    ''' This python method takes a sentence as input
+            and returns the total count of the words in that sentence.
+        '''
+    total = len(words.split())
+    return str(total)
+
+def getZillow(collection):
+    data = collection.find({})
     output = str(list(data))
     return output
 

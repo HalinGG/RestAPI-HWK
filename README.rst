@@ -85,11 +85,11 @@ How to Use The Zillow Real Estate Data API
 ------------------------------------------
 This is a Rest API that provides endpoints (GET requests) for 3 different types of JSON data:
 
--Median Sold Price For All Homes in San Jose, CA: http://127.0.0.1:5000/getMedianSold
+-Median sold price each year for all homes in San Jose, CA: http://127.0.0.1:5000/getMedianSold
 
--Median Sold Price Per Square Foot For All Homes in San Jose, CA: http://127.0.0.1:5000/getMedianSQFT
+-Median sold price per square Foot each year for all homes in San Jose, CA: http://127.0.0.1:5000/getMedianSQFT
 
--Median Rental Price For All Homes in San Jose, CA: http://127.0.0.1:5000/getMedianRent
+-Median rental price for all homes in San Jose, CA: http://127.0.0.1:5000/getMedianRent
 
 
 
