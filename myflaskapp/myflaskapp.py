@@ -58,11 +58,14 @@ def SQFTPrice():
 def getCount(words):
     ''' This python method takes a sentence as input
             and returns the total count of the words in that sentence.
-        '''
+    '''
     total = len(words.split())
     return str(total)
 
 def getZillow(collection):
+    ''' This python method takes a collection as input
+        and returns the data stored in that collection.
+    '''
     data = collection.find({})
     output = str(list(data))
     return output

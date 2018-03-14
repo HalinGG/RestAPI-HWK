@@ -66,8 +66,6 @@ Start MongoDB by executing "mongod" file:
 
 This should start mongoDB at: http://127.0.0.1:27017/
 
-Note: MongoDB Url can be changed in the configuration.ini
-
 Run "myflaskapp.py" to start the Flask Web Server at: http://127.0.0.1:5000/
 
 
